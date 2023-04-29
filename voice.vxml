@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" >
+
+<!-- Program name: SeedLink -->
+<!-- Author: Marcelo Audibert -->
+<!-- Date written: 17.04.2023 -->
+<!-- Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
+
+  <!-- Start with checking whether caller is looking to give or receive information. -->
+  <form id="begin">
+    <field name="select">
+    <prompt>
+     Say or press 1 to give information on seeds you have in stock.
+     Say or press 2 to gain information on available seeds.
+    </prompt>
+
+     <!-- Type in value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> 1 </item>
+           <item> 2 </item>
+         </one-of>
+        </rule>
+     </grammar>
+
+     <!-- Speak value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="voice">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> one </item>
+           <item> two </item>
+         </one-of>
+       </rule>
+     </grammar>
+    <!-- Response if there is no input -->
+    <noinput>
+     <prompt>
+      I did not hear you. Please try again.
+     </prompt>
+     <reprompt/>
+    </noinput>
+    <!-- Response if input doesn't match anything -->
+    <nomatch>
+     <prompt>
+      I did not understand. Please try again.
+     </prompt>
+     <reprompt/>
+    </nomatch>
+    </field>
+
+    <!-- Decide what to do with value given -->
+    <filled namelist="select" mode="all">
+      <if cond="select == '1'">
+        <goto next="#available_seed_type" />
+      <elseif cond="select == 'one'" />
+        <goto next="#available_seed_type" />
+      <elseif cond="select== '2'" />
+        <goto next="#needed_seed_type" />
+      <elseif cond="select== 'two'" />
+        <goto next="#needed_seed_type" />
+      </if>
+  </filled>
+  </form>
+
+  <!-- Find out what type of seed caller has in stock. -->
+  <form id="available_seed_type">
+    <field name="atype">
+    <prompt>
+     Say or press 1 for rice.
+     Say or press 2 for cotton.
+     Say or press 3 for sorghum.
+    </prompt>
+
+     <!-- Type in value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> 1 </item>
+           <item> 2 </item>
+           <item> 3 </item>
+         </one-of>
+        </rule>
+     </grammar>
+
+     <!-- Speak value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="voice">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> one </item>
+           <item> two </item>
+           <item> three </item>
+         </one-of>
+       </rule>
+     </grammar>
+    <noinput>
+     <prompt>
+      I did not hear you. Please try again.
+     </prompt>
+     <reprompt/>
+    </noinput>
+    <nomatch>
+     <prompt>
+      I did not understand. Please try again.
+     </prompt>
+     <reprompt/>
+    </nomatch>
+    </field>
+
+    <!-- Decide what to do with value given -->
+    <filled namelist="atype" mode="all">
+      <if cond="atype == '1'">
+        <goto next="#available_rice" />
+      <elseif cond="atype == 'one'" />
+        <goto next="#available_rice" />
+      <elseif cond="atype == '2'" />
+        <goto next="#available_cotton" />
+      <elseif cond="atype == 'two'" />
+        <goto next="#available_cotton" />
+      <elseif cond="atype == '3'" />
+        <goto next="#available_sorghum" />
+      <elseif cond="atype == 'three'" />
+        <goto next="#available_sorghum" />
+      </if>
+  </filled>
+  </form>
+
+  <!-- Ask user to leave information on the rice they have in stock -->
+  <form id="available_rice">
+    <block>
+      <prompt>
+       Please leave a message detailing at least the price and amount of rice available after the beep.
+       Beep.
+      </prompt>
+    </block>
+  </form>
+
+  <!-- Ask user to leave information on the cotton they have in stock -->
+  <form id="available_cotton">
+    <block>
+      <prompt>
+       Please leave a message detailing at least the price and amount of cotton available after the beep.
+       Beep.
+      </prompt>
+    </block>
+  </form>
+
+  <!-- Ask user to leave information on the sorghum they have in stock -->
+  <form id="available_sorghum">
+    <block>
+      <prompt>
+       Please leave a message detailing at least the price and amount of sorghum available after the beep.
+       Beep.
+      </prompt>
+    </block>
+  </form>
+
+  <!-- Find out what type of seed caller needs. -->
+  <form id="needed_seed_type">
+    <field name="ntype">
+    <prompt>
+     Say or press 1 for rice.
+     Say or press 2 for cotton.
+     Say or press 3 for sorghum.
+    </prompt>
+
+     <!-- Type in value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> 1 </item>
+           <item> 2 </item>
+           <item> 3 </item>
+         </one-of>
+        </rule>
+     </grammar>
+
+     <!-- Speak value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="voice">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> one </item>
+           <item> two </item>
+           <item> three </item>
+         </one-of>
+       </rule>
+     </grammar>
+    <noinput>
+     <prompt>
+      I did not hear you. Please try again.
+     </prompt>
+     <reprompt/>
+    </noinput>
+    <nomatch>
+     <prompt>
+      I did not understand. Please try again.
+     </prompt>
+     <reprompt/>
+    </nomatch>
+    </field>
+
+    <!-- Decide what to do with value given -->
+    <filled namelist="ntype" mode="all">
+      <if cond="ntype == '1'">
+        <goto next="#needed_rice" />
+      <elseif cond="ntype == 'one'" />
+        <goto next="#needed_rice" />
+      <elseif cond="ntype == '2'" />
+        <goto next="#needed_cotton" />
+      <elseif cond="ntype == 'two'" />
+        <goto next="#needed_cotton" />
+      <elseif cond="ntype == '3'" />
+        <goto next="#needed_sorghum" />
+      <elseif cond="ntype == 'three'" />
+        <goto next="#needed_sorghum" />
+      </if>
+  </filled>
+  </form>
+
+  <!-- Play information on available rice seeds -->
+  <form id="needed_rice">
+    <block>
+      <prompt>
+       Hi, I'm supplier John and I have fifty kilograms of rice. The price is five euros per kilogram.
+      </prompt>
+    </block>
+  </form>
+
+  <!-- Play information on available cotton seeds -->
+  <form id="needed_cotton">
+    <block>
+      <prompt>
+       Hi, I'm supplier Sam and I have ten kilograms of cotton. Price is negotiable.
+      </prompt>
+    </block>
+  </form>
+
+  <!-- Play information on available sorghum seeds -->
+  <form id="needed_sorghum">
+    <block>
+      <prompt>
+       Hi, I'm supplier Teresa. I have thirty kilograms of sorghum. The price is one euro per one hundred grams.
+      </prompt>
+    </block>
+  </form>
+
+</vxml>
