@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" >
+
+<!-- Program name: SeedLink -->
+<!-- Author: Marcelo Audibert -->
+<!-- Date written: 17.04.2023 -->
+<!-- Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
+
+  <!-- Choose English or Spanish. -->
+  <form id="begin">
+    <field name="select">
+    <prompt>
+     Say or press 1 for English.
+     Say or press 2 for Spanish
+    </prompt>
+     
+     <!-- Type in value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="dtmf">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> 1 </item>
+           <item> 2 </item>
+         </one-of>
+        </rule>
+     </grammar>
+
+     <!-- Speak value -->
+     <grammar xml:lang="en-US" root = "MYRULE" mode="voice">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> one </item>
+           <item> dos </item>
+         </one-of>
+       </rule>
+     </grammar>
+    <!-- Response if there is no input -->
+    <noinput>
+     <prompt>
+      I did not hear you. Please try again.
+      No le escuché. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </noinput>
+    <!-- Response if input doesn't match anything -->
+    <nomatch>
+     <prompt>
+      I did not understand. Please try again.
+      No le entendí. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </nomatch>
+    </field> 
+    
+    <!-- Decide what to do with value given -->
+    <filled namelist="select" mode="all">
+      <if cond="select == '1'">
+        <goto next="english/give_or_receive.xml" />
+      <elseif cond="select == 'one'" />
+        <goto next="english/give_or_receive.xml" />
+        <!-- Reminder to change next to #spanish -->
+      <elseif cond="select== '2'" />
+        <goto next="english/give_or_receive.xml" />
+      <elseif cond="select== 'two'" />
+        <goto next="english/give_or_receive.xml" />
+      </if>
+  </filled>
+  </form>
+
+</vxml>

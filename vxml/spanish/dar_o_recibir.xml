@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" xml:lang="es-mx" >
+
+<!-- Program name: SeedLink -->
+<!-- Author: Marcelo Audibert -->
+<!-- Date written: 17.04.2023 -->
+<!-- Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
+
+  <!-- Check whether caller is looking to give or receive information. -->
+  <form id="spanish">
+    <field name="select">
+    <prompt>
+     Diga o presione uno para dar información sobre las semillas que tiene en stock.
+     Diga o presione dos para recibir información sobre las semillas disponibles.
+    </prompt>
+     
+     <!-- Type in value -->
+     <grammar xml:lang="es-mx" root = "MYRULE" mode="dtmf">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> 1 </item>
+           <item> 2 </item>
+         </one-of>
+        </rule>
+     </grammar>
+
+     <!-- Speak value -->
+     <grammar xml:lang="es-mx" root = "MYRULE" mode="voice">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> uno </item>
+           <item> dos </item>
+         </one-of>
+       </rule>
+     </grammar>
+    <!-- Response if there is no input -->
+    <noinput>
+     <prompt>
+      No le escuché. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </noinput>
+    <!-- Response if input doesn't match anything -->
+    <nomatch>
+     <prompt>
+      No le entendí. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </nomatch>
+    </field> 
+    
+    <!-- Decide what to do with value given -->
+    <filled namelist="select" mode="all">
+      <if cond="select == '1'">
+        <goto next="tipo.xml#available_seed_type" />
+      <elseif cond="select == 'uno'" />
+        <goto next="tipo.xml#available_seed_type" />
+      <elseif cond="select== '2'" />
+        <goto next="tipo.xml#needed_seed_type" />
+      <elseif cond="select== 'dos'" />
+        <goto next="tipo.xml#needed_seed_type" />
+      </if>
+  </filled>
+  </form>
+</vxml>

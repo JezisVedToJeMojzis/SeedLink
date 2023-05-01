@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version = "2.1" xml:lang="es-mx" >
+<!-- Find out what type of seed caller has in stock. -->
+  <form id="available_seed_type">
+    <field name="atype">
+    <prompt>
+     Diga o empuje 1 para arroz.
+     Diga o empuje 2 para algodón.
+     Diga o empuje 3 para sorgo.
+    </prompt>
+     
+     <!-- Type in value -->
+     <grammar xml:lang="es-mx" root = "MYRULE" mode="dtmf">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> 1 </item>
+           <item> 2 </item>
+           <item> 3 </item>
+         </one-of>
+        </rule>
+     </grammar>
+
+     <!-- Speak value -->
+     <grammar xml:lang="es-mx" root = "MYRULE" mode="voice">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> uno </item>
+           <item> dos </item>
+           <item> tres </item>
+         </one-of>
+       </rule>
+     </grammar>
+    <noinput>
+     <prompt>
+      No le escuché. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </noinput>
+    <nomatch>
+     <prompt>
+      No le entendí. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </nomatch>
+    </field> 
+    
+    <!-- Decide what to do with value given -->
+    <filled namelist="atype" mode="all">
+      <if cond="atype == '1'">
+        <goto next="#available_rice" />
+      <elseif cond="atype == 'uno'" />
+        <goto next="#available_rice" />
+      <elseif cond="atype == '2'" />
+        <goto next="#available_cotton" />
+      <elseif cond="atype == 'dos'" />
+        <goto next="#available_cotton" />
+      <elseif cond="atype == '3'" />
+        <goto next="#available_sorghum" />
+      <elseif cond="atype == 'tres'" />
+        <goto next="#available_sorghum" />
+      </if>
+  </filled>
+  </form>
+
+  <!-- Ask user to leave information on the rice they have in stock -->
+  <form id="available_rice">
+    <block>
+      <record name="rec" beep="true" dtmfterm="true" finalsilence="5s" maxtime="100s">
+        <prompt>
+         Por favor deje su mensaje después del pitido.
+        </prompt>
+        <filled>
+          <log expr="rec$.duration" />
+          <log expr="rec$.termchar" />
+          <log expr="rec$.size" />
+          <prompt> Tu mensaje ha sido <value expr="rec" /> </prompt>
+          <submit next="./save.php" enctype="multipart/form-data" method="post"/>
+        </filled>
+      </record>
+    </block>
+  </form>
+
+  <!-- Ask user to leave information on the cotton they have in stock -->
+  <form id="available_cotton">
+    <block>
+      <record name="rec" beep="true" dtmfterm="true" finalsilence="5s" maxtime="100s">
+        <prompt>
+         Por favor deje su mensaje después del pitido.
+        </prompt>
+        <filled>
+          <log expr="rec$.duration" />
+          <log expr="rec$.termchar" />
+          <log expr="rec$.size" />
+          <prompt> Tu mensaje ha sido <value expr="rec" /> </prompt>
+          <submit next="./save.php" enctype="multipart/form-data" method="post"/>
+        </filled>
+      </record>
+    </block>
+  </form>
+
+  <!-- Ask user to leave information on the sorghum they have in stock -->
+  <form id="available_sorghum">
+    <block>
+      <record name="rec" beep="true" dtmfterm="true" finalsilence="5s" maxtime="100s">
+        <prompt>
+         Por favor deje su mensaje después del pitido.
+        </prompt>
+        <filled>
+          <log expr="rec$.duration" />
+          <log expr="rec$.termchar" />
+          <log expr="rec$.size" />
+          <prompt> Tu mensaje ha sido <value expr="rec" /> </prompt>
+          <submit next="./save.php" enctype="multipart/form-data" method="post"/>
+        </filled>
+      </record>
+    </block>  
+  </form>
+
+  <!-- Find out what type of seed caller needs. -->
+  <form id="needed_seed_type">
+    <field name="ntype">
+    <prompt>
+     Diga o empuje 1 para arroz.
+     Diga o empuje 2 para algodón.
+     Diga o empuje 3 para sorgo.
+    </prompt>
+     
+     <!-- Type in value -->
+     <grammar xml:lang="es-mx" root = "MYRULE" mode="dtmf">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> 1 </item>
+           <item> 2 </item>
+           <item> 3 </item>
+         </one-of>
+        </rule>
+     </grammar>
+
+     <!-- Speak value -->
+     <grammar xml:lang="es-mx" root = "MYRULE" mode="voice">
+       <rule id="MYRULE" scope = "public">
+         <one-of>
+           <item> uno </item>
+           <item> dos </item>
+           <item> tres </item>
+         </one-of>
+       </rule>
+     </grammar>
+    <noinput>
+     <prompt>
+      No le escuché. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </noinput>
+    <nomatch>
+     <prompt>
+      No le entendí. Por favor, inténtelo de nuevo.
+     </prompt>
+     <reprompt/>
+    </nomatch>
+    </field> 
+    
+    <!-- Decide what to do with value given -->
+    <filled namelist="ntype" mode="all">
+      <if cond="ntype == '1'">
+        <goto next="#needed_rice" />
+      <elseif cond="ntype == 'uno'" />
+        <goto next="#needed_rice" />
+      <elseif cond="ntype == '2'" />
+        <goto next="#needed_cotton" />
+      <elseif cond="ntype == 'dos'" />
+        <goto next="#needed_cotton" />
+      <elseif cond="ntype == '3'" />
+        <goto next="#needed_sorghum" />
+      <elseif cond="ntype == 'tres'" />
+        <goto next="#needed_sorghum" />
+      </if>
+  </filled>
+  </form>
+
+  <!-- Play information on available rice seeds -->
+  <form id="needed_rice">
+    <block>
+      <prompt>
+       Hola, soy John y tengo veinte kilogramos de arroz. El precio es de un euro por cien gramos.
+      </prompt>
+    </block>
+  </form>
+
+  <!-- Play information on available cotton seeds -->
+  <form id="needed_cotton">
+    <block>
+      <prompt>
+       Hola, soy Sam y tengo diez kilogramos de algodón. El precio es de un euro por cien gramos.
+      </prompt>
+    </block>
+  </form>
+
+  <!-- Play information on available sorghum seeds -->
+  <form id="needed_sorghum">
+    <block>
+      <prompt>
+       Hola, soy Teresa y tengo cinco kilogramos de sorgo. El precio es de un euro por cien gramos.
+      </prompt>
+    </block>
+  </form>
+</vxml>
