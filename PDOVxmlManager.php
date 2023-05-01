@@ -1,6 +1,6 @@
 <?php
 
-class PDOLocationsManager
+class PDOVxmlManager
 {
     private string $serverName;
     private string $userName;
