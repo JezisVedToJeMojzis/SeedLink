@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SeedLink</title>
+    <title>SeedLink BACKEND</title>
 </head>
 <body>
-<h1>Welcome to SeedLink</h1>
+<h1>Welcome to SeedLinks backend</h1>
 
 <?php
 // Your PHP code goes here
@@ -12,7 +12,7 @@
 ?>
 
 <footer>
-    &copy; <?php echo date("Y"); ?> My Web App. All rights reserved.
+    &copy; <?php echo date("Y"); ?> ICT4D VU Group 5. All rights reserved.
 </footer>
 </body>
 </html>

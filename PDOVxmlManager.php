@@ -13,6 +13,7 @@ class PDOVxmlManager
         $this->userName = $userName;
         $this->userPassword = $userPassword;
         $this->databaseName = $databaseName;
+        echo "db connected successfully";
     }
 
     public function getRecordingsBySeedType($seedType)
@@ -25,7 +26,7 @@ class PDOVxmlManager
             );
 
             $statement = $connection->prepare(
-                ""); //SQL QUERY
+                "SELECT * FROM vxml_table WHERE seed_type = :seedType");
             $statement->bindParam(":seedType", $seedType);
             $statement->execute();
             $statement->setFetchMode(PDO::FETCH_ASSOC);
