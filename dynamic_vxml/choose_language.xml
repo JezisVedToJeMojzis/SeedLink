@@ -10,11 +10,11 @@
         <filled>
           <if cond="userChoice == '1' || userChoice == 'english'">
             <assign name="selectedLanguage" expr="'english'" />
-            <goto next="english/"/>
+            <goto next="english/get_or_post.xml"/>
           </if>
           <if cond="userChoice == '2' || userChoice == 'spanish'">
             <assign name="selectedLanguage" expr="'spanish'" />
-            <goto next="spanish/"/>
+            <goto next="spanish/get_or_post.xml"/>
           </if>
           <prompt>Invalid choice.</prompt>
         </filled>

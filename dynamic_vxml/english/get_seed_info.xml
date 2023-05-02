@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    <form id="seedSelectionForm">
+        <block>
+            <data name="seedTypes" src="https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php" />
+            <submit next="" method="post" namelist="seedType" />
+        </block>
+
+        <field name="seedType">
+            <prompt>Choose a seed type:</prompt>
+            <foreach item="seedType" array="seedTypes">
+                <prompt>
+                    Press <value expr="index + 1" dtmf="key" /> or say <value expr="seedType" /> for <value expr="seedType" />.
+                </prompt>
+            </foreach>
+            <grammar type="application/grammar+voicexml">
+                <rule id="seedTypeRule" scope="public">
+                    <one-of>
+                        <item repeat="0-inf" weight="1">
+                            <tag>out.seedType = $value;</tag>
+                            <item>
+                                <ruleref uri="#seedTypes"/>
+                            </item>
+                        </item>
+                    </one-of>
+                </rule>
+                <rule id="seedTypes">
+                    <one-of>
+                        <?php
+                                $seedTypes = json_decode($data['seedTypes']);
+                                foreach ($seedTypes as $seedType) {
+                                echo '<item>' . $seedType . '</item>';
+                                }
+                                ?>
+                    </one-of>
+                </rule>
+            </grammar>
+            <filled>
+                <if cond="seedType">
+                    <block>
+                        <if cond="event.inputmode == 'dtmf'">
+                            <prompt>You selected seed type <value expr="seedType" /> using DTMF input mode.</prompt>
+                        </if>
+                        <elseif cond="event.inputmode == 'voice'" >
+                        <prompt>You selected seed type <value expr="seedType" /> using Voice input mode.</prompt>
+                        </elseif>
+                        <else>
+                            <prompt>Invalid selection. Please try again.</prompt>
+                        </else>
+                        <data name="seedTypeDescriptions" src="https://seedlinkvu.000webhostapp.com/backend/get_descriptions_by_seed_type_english/index.php?seed_type={seedType}" />
+                        <goto next="#seedDescriptions" />
+                    </block>
+                </if>
+                <else>
+                    <reprompt />
+                </else>
+            </filled>
+        </field>
+
+        <block id="seedDescriptions">
+            <foreach item="description" array="seedTypeDescriptions">
+                <prompt>
+                    <value expr="description" />
+                </prompt>
+            </foreach>
+            <prompt>That's everything, thank you for using our application. Have a nice day and goodbye!</prompt>
+            <exit />
+        </block>
+    </form>
+</vxml>
