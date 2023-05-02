@@ -1,11 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> <!-- If user has selected to provide his information about seeds -->
 <vxml version="2.1">
+    <!-- Program name: SeedLink -->
+    <!-- Author: Samuel Mojžiš -->
+    <!-- Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
+
     <form id="seedSelectionForm">
         <block>
+            <!-- We are getting seed types from this php endpoint -->
             <data name="seedTypes" src="https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php" />
         </block>
 
         <field name="selectedSeedType">
+            <!-- Prompt user to choose one of the seed types dynamically offered to him -->
             <prompt>Seleccione un tipo de semilla</prompt>
             <foreach item="seedType" array="seedTypes">
                 <prompt>
@@ -35,10 +41,12 @@
             <filled>
                 <if cond="selectedSeedType">
                     <block>
+                        <!-- Prompt user to speak about the selected seeds (give voice input) -->
                         <prompt>Usted seleccionó el tipo de semilla <value expr="selectedSeedType" />.</prompt>
                         <prompt>Ahora grabe una descripción de audio para el tipo de semilla seleccionado después del pitido</prompt>
                         <record name="audioDescription" beep="true" maxtime="60s">
                             <filled>
+                                <!-- Send recorded audio to php endpoint -->
                                 <submit next="https://seedlinkvu.000webhostapp.com/backend/post_english_description/index.php" method="post" enctype="multipart/form-data" namelist="selectedSeedType audioDescription" />
                             </filled>
                         </record>

@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> <!-- If user has chosen to receive info about seeds -->
 <vxml version="2.1">
+    <!-- Program name: SeedLink -->
+    <!-- Author: Samuel Mojžiš -->
+    <!-- Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
+
     <form id="seedSelectionForm">
         <block>
+            <!-- We are getting seed types from this php endpoint -->
             <data name="seedTypes" src="https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php" />
             <submit next="" method="post" namelist="seedType" />
         </block>
 
         <field name="seedType">
+            <!-- Prompt user to choose one of the seed types dynamically offered to him -->
             <prompt>Choose a seed type:</prompt>
             <foreach item="seedType" array="seedTypes">
                 <prompt>
@@ -29,7 +35,7 @@
                         <?php
                                 $seedTypes = json_decode($data['seedTypes']);
                                 foreach ($seedTypes as $seedType) {
-                                echo '<item>' . $seedType . '</item>';
+                                    echo '<item>' . $seedType . '</item>';
                                 }
                                 ?>
                     </one-of>
@@ -38,15 +44,19 @@
             <filled>
                 <if cond="seedType">
                     <block>
+                        <!-- User has chosen seed typy pressing key -->
                         <if cond="event.inputmode == 'dtmf'">
                             <prompt>You selected seed type <value expr="seedType" /> using DTMF input mode.</prompt>
                         </if>
+                        <!-- User has chosen seed type by voice -->
                         <elseif cond="event.inputmode == 'voice'" >
                         <prompt>You selected seed type <value expr="seedType" /> using Voice input mode.</prompt>
                         </elseif>
+                        <!-- Invalid selection -->
                         <else>
                             <prompt>Invalid selection. Please try again.</prompt>
                         </else>
+                        <!-- Getting descriptions of chosen seed type from this php endpoint -->
                         <data name="seedTypeDescriptions" src="https://seedlinkvu.000webhostapp.com/backend/get_descriptions_by_seed_type_english/index.php?seed_type={seedType}" />
                         <goto next="#seedDescriptions" />
                     </block>
@@ -57,6 +67,7 @@
             </filled>
         </field>
 
+        <!-- Providing descriptions of chosen seeds to user -->
         <block id="seedDescriptions">
             <foreach item="description" array="seedTypeDescriptions">
                 <prompt>

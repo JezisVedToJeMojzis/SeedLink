@@ -1,4 +1,8 @@
 <?php
+//Program name: SeedLink
+//Author: Samuel Mojžiš
+//Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
+
 
 class PDODatabaseManager
 {
@@ -17,7 +21,7 @@ class PDODatabaseManager
         //echo "db connected successfully";
     }
 
-    //upload new spanish description about some seed type
+    //upload new spanish description about specific seed type
     public function postSpanishDescription($seed_type,$description){
         try {
             $connection = new PDO(
@@ -47,7 +51,7 @@ class PDODatabaseManager
         return $result;
     }
 
-    //upload new english description about some seed type
+    //upload new english description about specific seed type
     public function postEnglishDescription($seed_type,$description){
         try {
             $connection = new PDO(
@@ -77,7 +81,7 @@ class PDODatabaseManager
         return $result;
     }
 
-    //spanish descriptions of selected seed type
+    //get spanish descriptions of selected seed type
     public function getSeedTypeDescriptionsEs($seedType){
         try {
             $connection = new PDO(
@@ -109,7 +113,7 @@ class PDODatabaseManager
     }
 
 
-    //english descriptions of selected seed type
+    //get english descriptions of selected seed type
     public function getSeedTypeDescriptionsEn($seedType){
         try {
             $connection = new PDO(

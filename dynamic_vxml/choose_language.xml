@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?> <!-- USING THIS ONE -->
 <vxml version="2.1">
+  <!-- Program name: SeedLink -->
+  <!-- Author: Samuel Mojžiš -->
+  <!-- Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
+
+  <!-- Choose English or Spanish language. -->
   <form>
     <block>
       <prompt>Please choose a language:</prompt>
       <field name="userChoice">
+        <!-- Press key -->
         <grammar mode="dtmf" root="dtmfLanguageChoices"/>
+        <!-- Speak value -->
         <grammar mode="voice" root="voiceLanguageChoices"/>
         <prompt>Press 1 for English or say "English". Press 2 for Spanish or say "Spanish".</prompt>
         <filled>
+          <!-- Redirect to english folder (get_or_post) with vxml scripts -->
           <if cond="userChoice == '1' || userChoice == 'english'">
             <assign name="selectedLanguage" expr="'english'" />
             <goto next="english/get_or_post.xml"/>
           </if>
+          <!-- Redirect to spanish folder (get_or_post) with vxml scripts -->
           <if cond="userChoice == '2' || userChoice == 'spanish'">
             <assign name="selectedLanguage" expr="'spanish'" />
             <goto next="spanish/get_or_post.xml"/>
           </if>
+          <!-- Response if input doesn't match anything -->
           <prompt>Invalid choice.</prompt>
         </filled>
       </field>
     </block>
   </form>
 
+  <!-- Press key -->
   <grammar root="dtmfLanguageChoices">
     <rule id="dtmfLanguageChoices">
       <one-of>
@@ -31,6 +42,7 @@
     </rule>
   </grammar>
 
+  <!-- Speak value -->
   <grammar root="voiceLanguageChoices">
     <rule id="voiceLanguageChoices">
       <one-of>
