@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    <form id="seedSelectionForm">
+        <block>
+            <data name="seedTypes" src="https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php" />
+        </block>
+
+        <field name="selectedSeedType">
+            <prompt>Seleccione un tipo de semilla</prompt>
+            <foreach item="seedType" array="seedTypes">
+                <prompt>
+                    Prensa <value expr="index + 1" dtmf="key" /> o decir <value expr="seedType" /> para <value expr="seedType" />.
+                </prompt>
+            </foreach>
+            <grammar type="application/grammar+voicexml">
+                <rule id="seedTypeRule" scope="public">
+                    <one-of>
+                        <item repeat="0-inf">
+                            <tag>out.selectedSeedType = $value;</tag>
+                            <item>
+                                <ruleref uri="#seedTypes"/>
+                            </item>
+                        </item>
+                    </one-of>
+                </rule>
+                <rule id="seedTypes">
+                    <?php
+                            $seedTypes = json_decode($data['seedTypes']);
+                            foreach ($seedTypes as $seedType) {
+                            echo '<item>' . $seedType . '</item>';
+                            }
+                            ?>
+                </rule>
+            </grammar>
+            <filled>
+                <if cond="selectedSeedType">
+                    <block>
+                        <prompt>Usted seleccionó el tipo de semilla <value expr="selectedSeedType" />.</prompt>
+                        <prompt>Ahora grabe una descripción de audio para el tipo de semilla seleccionado después del pitido</prompt>
+                        <record name="audioDescription" beep="true" maxtime="60s">
+                            <filled>
+                                <submit next="https://seedlinkvu.000webhostapp.com/backend/post_english_description/index.php" method="post" enctype="multipart/form-data" namelist="selectedSeedType audioDescription" />
+                            </filled>
+                        </record>
+                    </block>
+                </if>
+            </filled>
+        </field>
+    </form>
+</vxml>

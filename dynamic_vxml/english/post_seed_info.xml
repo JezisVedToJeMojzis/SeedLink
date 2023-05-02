@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vxml version="2.1">
+    <form id="seedSelectionForm">
+        <block>
+            <data name="seedTypes" src="https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php" />
+        </block>
+
+        <field name="selectedSeedType">
+            <prompt>Please select a seed type</prompt>
+            <foreach item="seedType" array="seedTypes">
+                <prompt>
+                    Press <value expr="index + 1" dtmf="key" /> or say <value expr="seedType" /> for <value expr="seedType" />.
+                </prompt>
+            </foreach>
+            <grammar type="application/grammar+voicexml">
+                <rule id="seedTypeRule" scope="public">
+                    <one-of>
+                        <item repeat="0-inf">
+                            <tag>out.selectedSeedType = $value;</tag>
+                            <item>
+                                <ruleref uri="#seedTypes"/>
+                            </item>
+                        </item>
+                    </one-of>
+                </rule>
+                <rule id="seedTypes">
+                    <?php
+                        $seedTypes = json_decode($data['seedTypes']);
+                        foreach ($seedTypes as $seedType) {
+                        echo '<item>' . $seedType . '</item>';
+                        }
+                        ?>
+                </rule>
+            </grammar>
+            <filled>
+                <if cond="selectedSeedType">
+                    <block>
+                        <prompt>You selected seed type <value expr="selectedSeedType" />.</prompt>
+                        <prompt>Now please record an audio description for the selected seed type after the beep sound</prompt>
+                        <record name="audioDescription" beep="true" maxtime="60s">
+                            <filled>
+                                <submit next="https://seedlinkvu.000webhostapp.com/backend/post_english_description/index.php" method="post" enctype="multipart/form-data" namelist="selectedSeedType audioDescription" />
+                            </filled>
+                        </record>
+                    </block>
+                </if>
+            </filled>
+        </field>
+    </form>
+</vxml>
