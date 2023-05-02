@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- ask user if they want to get or post information about seeds-->
+<vxml version="2.1">
+    <form>
+        <block>
+            <prompt>Por favor elige si quieres recibir o dar información sobre semillas:</prompt>
+            <field name="userChoice">
+                <grammar mode="dtmf" root="dtmfInfoChoices"/>
+                <grammar mode="voice" root="voiceInfoChoices"/>
+                <prompt>
+                    Diga o presione uno para dar información sobre las semillas que tiene en stock.
+                    Diga o presione dos para recibir información sobre las semillas disponibles.
+                </prompt>
+                <filled>
+                    <if cond="userChoice == '1' || userChoice == 'uno'">
+                        <assign name="selectedChoice" expr="'post'" />
+                        <goto next="post_seed_info.xml"/>
+                    </if>
+                    <if cond="userChoice == '2' || userChoice == 'dos'">
+                        <assign name="selectedChoice" expr="'get'" />
+                        <goto next="get_seed_info.xml"/>
+                    </if>
+                    <prompt>Elección no válida.</prompt>
+                </filled>
+            </field>
+        </block>
+    </form>
+
+    <grammar root="dtmfInfoChoices">
+        <rule id="dtmfInfoChoices">
+            <one-of>
+                <item>1</item>
+                <item>2</item>
+            </one-of>
+        </rule>
+    </grammar>
+
+    <grammar root="voiceInfoChoices">
+        <rule id="voiceInfoChoices">
+            <one-of>
+                <item>uno</item>
+                <item>dos</item>
+            </one-of>
+        </rule>
+    </grammar>
+</vxml>
