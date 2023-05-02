@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?> <!-- USING THIS ONE -->
+<vxml version="2.1">
+  <form>
+    <block>
+      <prompt>Please choose a language:</prompt>
+      <field name="userChoice">
+        <grammar mode="dtmf" root="dtmfLanguageChoices"/>
+        <grammar mode="voice" root="voiceLanguageChoices"/>
+        <prompt>Press 1 for English or say "English". Press 2 for Spanish or say "Spanish".</prompt>
+        <filled>
+          <if cond="userChoice == '1' || userChoice == 'english'">
+            <assign name="selectedLanguage" expr="'english'" />
+            <goto next="english/"/>
+          </if>
+          <if cond="userChoice == '2' || userChoice == 'spanish'">
+            <assign name="selectedLanguage" expr="'spanish'" />
+            <goto next="spanish/"/>
+          </if>
+          <prompt>Invalid choice.</prompt>
+        </filled>
+      </field>
+    </block>
+  </form>
+
+  <grammar root="dtmfLanguageChoices">
+    <rule id="dtmfLanguageChoices">
+      <one-of>
+        <item>1</item>
+        <item>2</item>
+      </one-of>
+    </rule>
+  </grammar>
+
+  <grammar root="voiceLanguageChoices">
+    <rule id="voiceLanguageChoices">
+      <one-of>
+        <item>english</item>
+        <item>spanish</item>
+      </one-of>
+    </rule>
+  </grammar>
+</vxml>
