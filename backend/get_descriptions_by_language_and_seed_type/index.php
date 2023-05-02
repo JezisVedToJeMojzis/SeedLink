@@ -10,14 +10,14 @@ $userPassword = $config["password"];
 $databaseName = $config["dbname"];
 
 //testing values
-$language = "english";
-$seed_type = "rice";
+//$language = "english";
+//$seed_type = "rice";
 
 $descriptionsArray = array(); //array to be filled
 
-if ($language) { //isset($_GET['language'], $_GET['seed_type'])
+if (isset($_GET['language'], $_GET['seed_type'])) {
     $pdo = new PDODatabaseManager($serverName, $userName, $userPassword, $databaseName);
-    $result = $pdo->getRecordingsByLanguageAndSeedType($language, $seed_type);
+    $result = $pdo->getRecordingsByLanguageAndSeedType($_GET['language'], $_GET['seed_type']);
     if ($result != null) {
         header("HTTP/1.1 200 OK");
         // echo json_encode($result);
