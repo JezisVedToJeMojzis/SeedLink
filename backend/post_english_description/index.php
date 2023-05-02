@@ -1,5 +1,5 @@
 <?php
-//PHP endpoint for getting all languages from db/// can be used to offer selection of languages to user dynamically
+//PHP endpoint for posting new english description of seed type into vxml table
 header('Content-Type: application/json; charset=utf-8');
 require_once "../PDODatabaseManager.php";
 
@@ -9,7 +9,7 @@ $userName = $config["username"];
 $userPassword = $config["password"];
 $databaseName = $config["dbname"];
 
-//$description = "Again posted new description about rice in english"; //array with all languages from db
+//$description = "Again posted new description about rice in english";
 //$seed_type = "rice";
 
 if (isset($_GET['seed_type'], $_GET['description'])) {
