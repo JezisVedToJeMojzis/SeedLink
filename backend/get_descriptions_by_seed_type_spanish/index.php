@@ -7,7 +7,7 @@
 if (isset($_GET['seed_type'])) { //check if we received seed type
 
     $seedType = $_GET['seed_type'];
-    $recordings =  '../../recordings/spanish/' + $seedType; //directory with recordings
+    $recordings =  '../../recordings/spanish/' . $seedType; //directory with recordings
 
     // get the recordings
     $files = scandir($recordings);
