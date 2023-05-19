@@ -8,9 +8,11 @@ App for ICT4D course at VU Amsterdam 2023
 **Server:** 000webhost.com   
 
 - [SeedLink](#seedlink)
-  - [Key_idea](#seedlink/#keyidea)
+  - [Key idea](#seedlink/#keyidea)
   - [Folder structure](#folderstructure)
   - [API](#api)
+    - [GET endpoints](#getendpoints)
+    - [POST endpoints](#postendpoints)
     
 
 ## Key idea  
