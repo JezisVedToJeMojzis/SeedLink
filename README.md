@@ -57,7 +57,7 @@ Currently, in rural Mali, lack of knowledge and information on food tree seeds s
 ```
 
 ## API
-The backend API is made in PHP and works with MySQL database and local directories on server. We have used free external server called 000webhost.com, on which we have deployed our implementation, database and additional directiories. 
+The backend API is made in PHP and works with a MySQL database and local directories on a server. We have used a free external server called 000webhost.com, on which we have deployed our implementation, database and additional directiories. 
 
 ### Dependencies   
 - Web server that supports PHP and MySQL.  
