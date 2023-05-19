@@ -7,6 +7,7 @@ App for ICT4D course at VU Amsterdam 2023
 **Database interface:** PhpMyAdmin   
 **Server:** 000webhost.com   
 
+## Contents: 
 - [Key idea](#keyidea)
 - [Folder structure](#folderstructure)
 
