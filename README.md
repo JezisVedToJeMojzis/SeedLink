@@ -142,5 +142,23 @@ The API is made in PHP and works with MySQL database and local directories on se
 
  
 ### POST endpoints
-- **/backend/post_english_description/index.php**
-- **/backend/post_spanish_description/index.php**
+- **/backend/post_english_description/index.php?seed_type=rice&description=recorded_voice**
+  - **Request**
+  - **Response 200**
+  ``` bash
+  "Voice recording saved successfully"
+  ```
+  - **Response 204**
+  ``` bash
+  "Error, voice recording not found"
+  ```
+- **/backend/post_spanish_description/index.php?seed_type=rice&description=recorded_voice**
+  - **Request**
+  - **Response 200**
+  ``` bash
+  "Voice recording saved successfully"
+  ```
+  - **Response 204**
+  ``` bash
+  "Error, voice recording not found"
+  ```
