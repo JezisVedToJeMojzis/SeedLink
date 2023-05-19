@@ -59,9 +59,9 @@
         <goto next="english/give_or_receive.xml" />
         <!-- Reminder to change next to #spanish -->
       <elseif cond="select== '2'" />
-        <goto next="english/give_or_receive.xml" />
+        <goto next="spanish/dar_or_recibir.xml" />
       <elseif cond="select== 'two'" />
-        <goto next="english/give_or_receive.xml" />
+        <goto next="spanish/dar_or_recibir.xml" />
       </if>
   </filled>
   </form>
