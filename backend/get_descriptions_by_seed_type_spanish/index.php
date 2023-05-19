@@ -3,41 +3,42 @@
 //Author: Samuel Mojžiš
 //Description: This is a mobile-based program where users in Mali can call in and give or receive information on available seeds. The purpose of this program is to connect farmers to suppliers of seed as it can often be hard for them to establish such connections due to factors such as lack of internet and different mother tounges. -->
 
-//PHP endpoint for searching descriptions of seed type in spanish
-header('Content-Type: application/json; charset=utf-8');
-require_once "../PDODatabaseManager.php";
+//Send voice recordings of specific seed type in spanish to vxml
+if (isset($_GET['seed_type'])) { //check if we received seed type
 
-$config = require_once "../config.php";
-$serverName = $config["host"];
-$userName = $config["username"];
-$userPassword = $config["password"];
-$databaseName = $config["dbname"];
+    $seedType = $_GET['seed_type'];
+    $recordings =  '../../recordings/spanish/' + $seedType; //directory with recordings
 
-//testing values
-//$language = "spanish";
-//$seed_type = "rice";
+    // get the recordings
+    $files = scandir($recordings);
+    $files = array_diff($files, array('.', '..'));
 
-$descriptionsArray = array(); //array to be filled
-
-if (isset($_GET['seed_type'])) { //check if we received needed values
-    $pdo = new PDODatabaseManager($serverName, $userName, $userPassword, $databaseName);//connect to db
-    $result = $pdo->getSeedTypeDescriptionsEs($_GET['seed_type']); //send them to PDO manager to work with db and save result of query into variable
-    if ($result != null) {
-        header("HTTP/1.1 200 OK");
-        // echo json_encode($result);
-        if(is_array($result) || is_object($result)){
-            foreach ($result as $r)
-            {
-                $descriptionsArray[] = $r["recording_description"]; //filling the array with descriptions about selected seeds in selected language from db
-                //var_dump($r);
-            }
-            echo json_encode($descriptionsArray); //echoing the values
-        }
+    header('Content-Type: text/xml');
+    // check if the directory is empty
+    if (empty($files)) {
+        header("HTTP/1.1 404 Not found");
+        echo '<?xml version="1.0" encoding="UTF-8"?>';
+        echo '<vxml version="2.1">';
+        echo '  <form>';
+        echo '    <block>';
+        echo '      <prompt>Lo siento, no hay grabaciones de voz disponibles</prompt>';
+        echo '    </block>';
+        echo '  </form>';
+        echo '</vxml>';
     } else {
-        header("HTTP/1.1 404 Not Found");
-        echo "{} 404";
+        echo '<?xml version="1.0" encoding="UTF-8"?>';
+        echo '<vxml version="2.1">';
+        echo '  <form>';
+        echo '    <block>';
+
+        foreach ($files as $file) {
+            echo '      <prompt>';
+            echo '        <audio src="' . $recordings . $file . '" />';
+            echo '      </prompt>';
+        }
+
+        echo '    </block>';
+        echo '  </form>';
+        echo '</vxml>';
     }
-}else {
-    header("HTTP/1.1 404 Not Found");
-    echo "{}";
 }
