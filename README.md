@@ -58,12 +58,43 @@ Currently, in rural Mali, lack of knowledge and information on food tree seeds s
 ```
 
 ## API
-The API is made in PHP and works with MySQL database and local directories on server. Below are discussed all the endpoints with are used.
+The API is made in PHP and works with MySQL database and local directories on server. Below are discussed all the endpoints which are used.
 
 ### GET endpoints
  - **/backend/get_seed_types/index.php**
+   - Request
+    ``` bash
+    curl https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php
+    ```
+     - Response
+    ``` bash
+    ["rice","cotton","sorghum"]
+    ```
+    
  - **/backend/get_descriptions_by_seed_type_english/index.php**
+   - Request
+    ``` bash
+    curl https://seedlinkvu.000webhostapp.com/backend/get_descriptions_by_seed_type_english/index.php
+    ```
+     - Response 200
+    ``` bash
+    <?xml version="1.0" encoding="UTF-8"?>
+    <vxml version="2.1">
+        <form>
+            <block>
+        foreach ($files as $file) {
+                  <prompt>
+                    <audio src="' . $recordings . $file . '" />
+                  </prompt>
+        }
+
+            </block>';
+        </form>';
+    </vxml>
+    ```
  - **/backend/get_descriptions_by_seed_type_spanish/index.php**
+
+
  
 ### POST endpoints
 - **/backend/post_english_description/index.php**
