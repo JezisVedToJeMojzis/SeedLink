@@ -18,7 +18,7 @@
 
 if (isset($_GET['seed_type'], $_GET['description'])) { //check if we received the needed values
     $seedType = $_GET['seed_type'];
-    $directory = '../../recordings/spanish/' + $seedType; // save recording to this directory
+    $directory = '../../recordings/spanish/' . $seedType; // save recording to this directory
     $filename = uniqid('voice_') . '.wav';
     $filepath = $directory . $filename;
 
