@@ -91,20 +91,20 @@ The API is made in PHP and works with MySQL database and local directories on se
                     <audio src="' . $recordings . $file . '" />
                   </prompt>
         }
-            </block>';
-        </form>';
+            </block>
+        </form>
     </vxml>
     ```
     - **Reponse 404**
     ``` bash
-    <?xml version="1.0" encoding="UTF-8"?>';
-    <vxml version="2.1">';
-          <form>';
-            <block>';
-              <prompt>I am sorry, there are no voice recordings available</prompt>';
-            </block>';
-          </form>';
-    </vxml>';
+    <?xml version="1.0" encoding="UTF-8"?>
+    <vxml version="2.1">
+          <form>
+            <block>
+              <prompt>I am sorry, there are no voice recordings available</prompt>
+            </block>
+          </form>
+    </vxml>
     ```
     
  - **/backend/get_descriptions_by_seed_type_spanish/index.php**
@@ -123,20 +123,20 @@ The API is made in PHP and works with MySQL database and local directories on se
                     <audio src="' . $recordings . $file . '" />
                   </prompt>
         }
-            </block>';
-        </form>';
+            </block>
+        </form>
     </vxml>
     ```
     - **Reponse 404**
     ``` bash
-    <?xml version="1.0" encoding="UTF-8"?>';
-    <vxml version="2.1">';
-          <form>';
-            <block>';
-              <prompt>Lo siento, no hay grabaciones de voz disponibles</prompt>';
-            </block>';
-          </form>';
-    </vxml>';
+    <?xml version="1.0" encoding="UTF-8"?>
+    <vxml version="2.1">
+          <form>
+            <block>
+              <prompt>Lo siento, no hay grabaciones de voz disponibles</prompt>
+            </block>
+          </form>
+    </vxml>
     ```
 
 
