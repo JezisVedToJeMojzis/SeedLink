@@ -57,7 +57,7 @@ Currently, in rural Mali, lack of knowledge and information on food tree seeds s
 ```
 
 ## API
-The backend API is made in PHP and works with a MySQL database and local directories on a server. We have used a free external Apache web server called 000webhost.com, on which we have deployed our implementation, database and additional directiories. The VXML files are sending HTTP requests (GET/POST) to this RESTful API and are receiving appropriate responses.
+This is a RESTful API written in PHP. The API cooperates with MySQL database and local directories on the Apache web server. We have used a free external Apache web server called 000webhost.com, on which we have deployed our implementation, database and additional directiories. The VXML files are sending HTTP requests (GET/POST) to this RESTful API and are receiving appropriate responses.
 
 ### Dependencies   
 - Web server that supports PHP and MySQL.  
