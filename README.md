@@ -23,7 +23,7 @@ The SeedLink application consists of VXML files that handle interactions with us
 ## Features
 - Users are able to choose between english and spanish language.
 - Users are able to choose from provided seed types.
-- Users are able to either receive or post information about selected seed type.
+- Users are able to either get or post information (voice recording) about selected seed type.
 
 ## Folder structure
 ``` bash
