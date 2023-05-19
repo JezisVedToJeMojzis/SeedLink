@@ -7,6 +7,7 @@ App for ICT4D course at VU Amsterdam 2023
   - [Key idea](#seedlink/#keyidea)
   - [Folder structure](#folderstructure)
   - [API](#api)
+    - [Dependencies](#dependencies)
     - [GET endpoints](#getendpoints)
     - [POST endpoints](#postendpoints)
     
@@ -58,7 +59,7 @@ Currently, in rural Mali, lack of knowledge and information on food tree seeds s
 ## API
 The backend API is made in PHP and works with MySQL database and local directories on server. We have used free external server called 000webhost.com, on which we have deployed our implementation, database and additional directiories. 
 
-**Dependencies to run this backend are:**   
+### Dependencies   
 - Web server that supports PHP and MySQL.  
 - MySQL database version 5.1 or later.
 - PHP version 7.4 or later.    
