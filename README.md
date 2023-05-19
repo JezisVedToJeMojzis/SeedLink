@@ -60,7 +60,8 @@ The backend API is made in PHP and works with MySQL database and local directori
 
 **Dependencies to run this backend are:**   
 - Web server that supports PHP and MySQL.  
-- PHP version 7.4 or later  
+- MySQL database version 5.1 or later.
+- PHP version 7.4 or later.    
 
 Below are discussed all the endpoints which are used to work with vxml.
 
