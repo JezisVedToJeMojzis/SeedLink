@@ -58,13 +58,13 @@ Currently, in rural Mali, lack of knowledge and information on food tree seeds s
 ## API
 The backend API is made in PHP and works with MySQL database and local directories on server. We have used free external server called 000webhost.com, on which we have deployed our implementation, database and additional directiories. 
 
-Dependencies to run this backend are: - Web server that supports PHP and MySQL.
-                                      - PHP version 7.4 or later
+Dependencies to run this backend are: - Web server that supports PHP and MySQL.  
+                                      - PHP version 7.4 or later  
 
 Below are discussed all the endpoints which are used to work with vxml.
 
 ### GET endpoints
- - **/backend/get_seed_types/index.php**
+ - **/backend/get_seed_types/index.php**  
    Get method to retrieve all seed types from database.
    - **Request**
     ``` bash
@@ -79,7 +79,7 @@ Below are discussed all the endpoints which are used to work with vxml.
     "{} 404"
     ```
     
- - **/backend/get_descriptions_by_seed_type_english/index.php**
+ - **/backend/get_descriptions_by_seed_type_english/index.php**  
    Get method to retrieve all recordings from a english directory specified by selected seed type.
    - **Request**
     ``` bash
@@ -112,7 +112,7 @@ Below are discussed all the endpoints which are used to work with vxml.
     </vxml>
     ```
     
- - **/backend/get_descriptions_by_seed_type_spanish/index.php**
+ - **/backend/get_descriptions_by_seed_type_spanish/index.php**  
    Get method to retrieve all recordings from a spanish directory specified by selected seed type.
    - **Request**
     ``` bash
@@ -148,7 +148,7 @@ Below are discussed all the endpoints which are used to work with vxml.
 
  
 ### POST endpoints
-- **/backend/post_english_description/index.php**
+- **/backend/post_english_description/index.php**  
   Post method to save a new recording about selected seed type to directory with english recordings.
   - **Request**
   ``` bash
@@ -162,7 +162,7 @@ Below are discussed all the endpoints which are used to work with vxml.
   ``` bash
   "Error, voice recording not found"
   ```
-- **/backend/post_spanish_description/index.php**
+- **/backend/post_spanish_description/index.php**  
   Post method to save a new recording about selected seed type to directory with spanish recordings.
   - **Request**
   ``` bash
