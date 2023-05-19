@@ -60,7 +60,7 @@ Currently, in rural Mali, lack of knowledge and information on food tree seeds s
 ```
 
 ## API
-The API is made in PHP and works with MySQL database and local directories on server. Below are discussed all the endpoints which are used.
+The backend API is made in PHP and works with MySQL database and local directories on server. We have used free external server called 000webhost.com, on which we have deployed our implementation, database and additional directiories. Below are discussed all the endpoints which are used to work with vxml.
 
 ### GET endpoints
  - **/backend/get_seed_types/index.php**
@@ -147,7 +147,7 @@ The API is made in PHP and works with MySQL database and local directories on se
 - **/backend/post_english_description/index.php**
   - **Request**
   ``` bash
-  curl -d "seed_type=rice&descrpiton=recorded_voice" /backend/post_english_description/index.php
+  curl -d "seed_type=rice&description=recorded_voice" /backend/post_english_description/index.php
   ```
   - **Response 200**
   ``` bash
@@ -160,7 +160,7 @@ The API is made in PHP and works with MySQL database and local directories on se
 - **/backend/post_spanish_description/index.php**
   - **Request**
   ``` bash
-  curl -d "seed_type=rice&descrpiton=recorded_voice" /backend/post_english_description/index.php
+  curl -d "seed_type=rice&description=recorded_voice" /backend/post_english_description/index.php
   ```
   - **Response 200**
   ``` bash
