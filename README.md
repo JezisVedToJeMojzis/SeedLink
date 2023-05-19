@@ -8,7 +8,7 @@ App for ICT4D course at VU Amsterdam 2023
 **Server:** 000webhost.com   
 
 - [SeedLink](#seedlink)
-  - [Key idea](seedlink/keyidea)
+  - [Key idea](#seedlink/##keyidea)
   - [Folder structure](#folderstructure)
   - [API](#api)
     
@@ -66,15 +66,19 @@ The API is made in PHP and works with MySQL database and local directories on se
     ``` bash
     curl https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php
     ```
-    - **Response**
+    - **Response 200**
     ``` bash
     ["rice","cotton","sorghum"]
+    ```
+    - **Response 404**
+    ``` bash
+    "{} 404"
     ```
     
  - **/backend/get_descriptions_by_seed_type_english/index.php**
    - **Request**
     ``` bash
-    curl https://seedlinkvu.000webhostapp.com/backend/get_descriptions_by_seed_type_english/index.php
+    curl https://seedlinkvu.000webhostapp.com/backend/get_descriptions_by_seed_type_english/index.php?seed_type=rice
     ```
     - **Response 200**
     ``` bash
@@ -102,8 +106,38 @@ The API is made in PHP and works with MySQL database and local directories on se
           </form>';
     </vxml>';
     ```
+    
  - **/backend/get_descriptions_by_seed_type_spanish/index.php**
-   -
+   - **Request**
+    ``` bash
+    curl https://seedlinkvu.000webhostapp.com/backend/get_descriptions_by_seed_type_spanish/index.php?seed_type=rice
+    ```
+    - **Response 200**
+    ``` bash
+    <?xml version="1.0" encoding="UTF-8"?>
+    <vxml version="2.1">
+        <form>
+            <block>
+        foreach ($files as $file) {
+                  <prompt>
+                    <audio src="' . $recordings . $file . '" />
+                  </prompt>
+        }
+            </block>';
+        </form>';
+    </vxml>
+    ```
+    - **Reponse 404**
+    ``` bash
+    <?xml version="1.0" encoding="UTF-8"?>';
+    <vxml version="2.1">';
+          <form>';
+            <block>';
+              <prompt>Lo siento, no hay grabaciones de voz disponibles</prompt>';
+            </block>';
+          </form>';
+    </vxml>';
+    ```
 
 
  
