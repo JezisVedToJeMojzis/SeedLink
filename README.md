@@ -42,8 +42,8 @@ Currently, in rural Mali, lack of knowledge and information on food tree seeds s
 │   ├── english
 │   └── spanish
 ├── vxml - contains all VXML files used to interact with user and send request to API
-│    ├── english
-│        ├── get_or_post.xml
+│   ├── english
+│       ├── get_or_post.xml
 │       ├── get_seed_info.xml
 │       └── post_seed_info.xml
 │   ├── php_scripts - not used
