@@ -8,7 +8,7 @@ App for ICT4D course at VU Amsterdam 2023
 **Server:** 000webhost.com   
 
 - [SeedLink](#seedlink)
-  - [Key idea](#keyidea)
+  - [Key idea](seedlink/keyidea)
   - [Folder structure](#folderstructure)
   - [API](#api)
     
@@ -62,21 +62,21 @@ The API is made in PHP and works with MySQL database and local directories on se
 
 ### GET endpoints
  - **/backend/get_seed_types/index.php**
-   - Request
+   - **Request**
     ``` bash
     curl https://seedlinkvu.000webhostapp.com/backend/get_seed_types/index.php
     ```
-     - Response
+    - **Response**
     ``` bash
     ["rice","cotton","sorghum"]
     ```
     
  - **/backend/get_descriptions_by_seed_type_english/index.php**
-   - Request
+   - **Request**
     ``` bash
     curl https://seedlinkvu.000webhostapp.com/backend/get_descriptions_by_seed_type_english/index.php
     ```
-    - Response 200
+    - **Response 200**
     ``` bash
     <?xml version="1.0" encoding="UTF-8"?>
     <vxml version="2.1">
@@ -91,7 +91,7 @@ The API is made in PHP and works with MySQL database and local directories on se
         </form>';
     </vxml>
     ```
-    - Reponse 404
+    - **Reponse 404**
     ``` bash
     <?xml version="1.0" encoding="UTF-8"?>';
     <vxml version="2.1">';
