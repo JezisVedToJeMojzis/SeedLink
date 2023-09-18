@@ -1,5 +1,5 @@
 # SeedLink
-App for ICT4D course at VU Amsterdam 2023   
+VXML/PHP app for ICT4D course at VU Amsterdam 2023   
 
 **Contributors:** Samuel Mojžiš, Marcelo Audibert
 
